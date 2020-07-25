@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "132463746375",
+    "firebase_url": "https://hacky-birthday-mlh.firebaseio.com",
+    "project_id": "hacky-birthday-mlh",
+    "storage_bucket": "hacky-birthday-mlh.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:132463746375:android:651472eccb5d02db468062",
+        "android_client_info": {
+          "package_name": "com.example.HackyBirthdayMLH"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "132463746375-b7nomi5ivtv6bumpsrovpo2d7nih1qa2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvTYaZ4zbCVNW4BjUbAGEZBPxZS5Hm1NM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "132463746375-b7nomi5ivtv6bumpsrovpo2d7nih1qa2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
