@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 // import 'package:geolocator/geolocator.dart';
 
+import './form.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
@@ -55,47 +57,7 @@ class SharePostButton extends StatelessWidget {
               title: Text("Add a post!"),
               backgroundColor: Colors.lightGreen,
             ),
-            body: Column(
-              children: <Widget>[
-                Text(
-                  'Title',
-                  style: TextStyle(fontSize: 19),
-                  textAlign: TextAlign.left,
-                ),
-                TextField(
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Enter the title here'),
-                ),
-                Text(
-                  'Description',
-                  style: TextStyle(fontSize: 19),
-                  textAlign: TextAlign.left,
-                ),
-                TextField(
-                  minLines: 5,
-                  maxLines: 10,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Share your hack...'),
-                ),
-                FlatButton(
-                  color: Colors.lightGreen,
-                  textColor: Colors.white,
-                  disabledColor: Colors.grey,
-                  disabledTextColor: Colors.black,
-                  padding: EdgeInsets.all(8.0),
-                  splashColor: Colors.lightGreenAccent,
-                  onPressed: () {
-                    /*...*/
-                  },
-                  child: Text(
-                    "Submit",
-                    style: TextStyle(fontSize: 20.0),
-                  ),
-                )
-              ],
-            ));
+            body: Container(child: ShareForm()));
       }));
     }
 
