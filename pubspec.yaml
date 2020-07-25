@@ -23,6 +23,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
+  google_maps_flutter:
+  http:
+  json_serializable:
+  geolocator:
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -32,6 +37,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  
+  pedantic:
+  build_runner:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
