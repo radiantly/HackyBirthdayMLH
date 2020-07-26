@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:location/location.dart';
 
 class ShareForm extends StatefulWidget {
   @override
@@ -11,18 +13,22 @@ class ShareForm extends StatefulWidget {
 class _ShareFormState extends State<ShareForm> {
   // Create a text controller and use it to retrieve the current value
   // of the TextField.
-  final myController = TextEditingController();
+  final titleController = TextEditingController();
+  final postController = TextEditingController();
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
-    myController.dispose();
+    titleController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Form(
+        key: _formKey,
         autovalidate: true,
         child: Center(
             child: Padding(
@@ -31,6 +37,7 @@ class _ShareFormState extends State<ShareForm> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     TextFormField(
+                      controller: titleController,
                       decoration: InputDecoration(
                           icon: Icon(Icons.title),
                           hintText: 'Enter the title here',
@@ -49,13 +56,16 @@ class _ShareFormState extends State<ShareForm> {
                     TextFormField(
                       minLines: 1,
                       maxLines: 10,
+                      controller: postController,
                       decoration: InputDecoration(
                           icon: Icon(
                             Icons.cloud,
                           ),
                           hintText: 'Share your hack...',
                           labelText: 'Share your hack'),
-                      validator: null,
+                      validator: (value) {
+                        return value.isEmpty ? 'Enter your hack!' : null;
+                      },
                     ),
                     FlatButton(
                       color: Colors.lightGreen,
@@ -64,23 +74,39 @@ class _ShareFormState extends State<ShareForm> {
                       disabledTextColor: Colors.black,
                       padding: EdgeInsets.all(8.0),
                       splashColor: Colors.lightGreenAccent,
-                      onPressed: () {
-                        showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return CupertinoAlertDialog(
-                                title: Text('Success!'),
-                                content: Text('Your hack has been submitted!'),
-                                actions: [
-                                  CupertinoDialogAction(
-                                      child: Text("Okay"),
-                                      onPressed: () {
-                                        Navigator.of(context)
-                                            .popUntil((route) => route.isFirst);
-                                      }),
-                                ],
-                              );
-                            });
+                      onPressed: () async {
+                        if (_formKey.currentState.validate()) {
+                          Scaffold.of(context).showSnackBar(
+                              SnackBar(content: Text('Processing Data')));
+                          print("hiya");
+                          Location location = new Location();
+                          LocationData loc = await location.getLocation();
+
+                          await Firestore.instance.collection('hacks').add({
+                            "title": titleController.text,
+                            "post": postController.text,
+                            "Lat": loc.latitude,
+                            "Lon": loc.longitude
+                          });
+
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return CupertinoAlertDialog(
+                                  title: Text('Success!'),
+                                  content:
+                                      Text('Your hack has been submitted!'),
+                                  actions: [
+                                    CupertinoDialogAction(
+                                        child: Text("Okay"),
+                                        onPressed: () {
+                                          Navigator.of(context).popUntil(
+                                              (route) => route.isFirst);
+                                        }),
+                                  ],
+                                );
+                              });
+                        }
                       },
                       child: Text(
                         "Submit",
