@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -58,8 +59,26 @@ class _MyAppState extends State<MyApp> {
                   final aMarker = Marker(
                       markerId: markerId,
                       position: pos,
-                      infoWindow: InfoWindow(
-                          title: document["title"], snippet: document["post"]));
+                      // infoWindow: InfoWindow(
+                      //     title: document["title"], snippet: document["post"]),
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return CupertinoAlertDialog(
+                                title: Text(document["title"]),
+                                content: Text(document["post"]),
+                                actions: [
+                                  CupertinoDialogAction(
+                                      child: Text("Okay"),
+                                      onPressed: () {
+                                        Navigator.of(context)
+                                            .popUntil((route) => route.isFirst);
+                                      }),
+                                ],
+                              );
+                            });
+                      });
                   markers[markerId] = aMarker;
                 }
 
