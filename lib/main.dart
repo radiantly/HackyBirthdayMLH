@@ -25,6 +25,12 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+          primaryColor: Colors.lightGreen,
+          inputDecorationTheme: const InputDecorationTheme(
+            labelStyle: TextStyle(color: Colors.lightGreen),
+            hintStyle: TextStyle(color: Colors.grey),
+          )),
       home: Builder(
           builder: (context) => Scaffold(
                 appBar: AppBar(
@@ -54,7 +60,7 @@ class SharePostButton extends StatelessWidget {
           .push(MaterialPageRoute(builder: (BuildContext context) {
         return Scaffold(
             appBar: AppBar(
-              title: Text("Add a post!"),
+              title: Text("Share your hack!"),
               backgroundColor: Colors.lightGreen,
             ),
             body: Container(child: ShareForm()));

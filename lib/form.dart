@@ -22,46 +22,56 @@ class _ShareFormState extends State<ShareForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          'Title',
-          style: TextStyle(fontSize: 19),
-          textAlign: TextAlign.left,
-        ),
-        TextField(
-          decoration: InputDecoration(
-              border: OutlineInputBorder(), hintText: 'Enter the title here'),
-        ),
-        Text(
-          'Description',
-          style: TextStyle(fontSize: 19),
-          textAlign: TextAlign.left,
-        ),
-        TextField(
-          minLines: 5,
-          maxLines: 10,
-          decoration: InputDecoration(
-              border: OutlineInputBorder(), hintText: 'Share your hack...'),
-        ),
-        FlatButton(
-          color: Colors.lightGreen,
-          textColor: Colors.white,
-          disabledColor: Colors.grey,
-          disabledTextColor: Colors.black,
-          padding: EdgeInsets.all(8.0),
-          splashColor: Colors.lightGreenAccent,
-          onPressed: () {
-            /*...*/
-          },
-          child: Text(
-            "Submit",
-            style: TextStyle(fontSize: 20.0),
-          ),
-        )
-      ],
-    ));
+        autovalidate: true,
+        child: Center(
+            child: Padding(
+                padding: EdgeInsets.all(18.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    TextFormField(
+                      decoration: InputDecoration(
+                          icon: Icon(Icons.title),
+                          hintText: 'Enter the title here',
+                          labelText: 'Title'),
+                      validator: (value) {
+                        return value.isEmpty ? 'Please enter a title' : null;
+                      },
+                    ),
+                    TextFormField(
+                      decoration: InputDecoration(
+                          icon: Icon(Icons.link),
+                          hintText: 'Share a link (optional)',
+                          labelText: 'Link'),
+                      validator: null,
+                    ),
+                    TextFormField(
+                      minLines: 1,
+                      maxLines: 10,
+                      decoration: InputDecoration(
+                          icon: Icon(
+                            Icons.cloud,
+                          ),
+                          hintText: 'Share your hack...',
+                          labelText: 'Share your hack'),
+                      validator: null,
+                    ),
+                    FlatButton(
+                      color: Colors.lightGreen,
+                      textColor: Colors.white,
+                      disabledColor: Colors.grey,
+                      disabledTextColor: Colors.black,
+                      padding: EdgeInsets.all(8.0),
+                      splashColor: Colors.lightGreenAccent,
+                      onPressed: () {
+                        /*...*/
+                      },
+                      child: Text(
+                        "Submit",
+                        style: TextStyle(fontSize: 20.0),
+                      ),
+                    )
+                  ],
+                ))));
   }
 }
