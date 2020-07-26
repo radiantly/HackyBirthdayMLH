@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ShareForm extends StatefulWidget {
@@ -64,7 +65,21 @@ class _ShareFormState extends State<ShareForm> {
                       padding: EdgeInsets.all(8.0),
                       splashColor: Colors.lightGreenAccent,
                       onPressed: () {
-                        /*...*/
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return CupertinoAlertDialog(
+                                title: Text('Success!'),
+                                content: Text('Your hack has been submitted!'),
+                                actions: [
+                                  CupertinoDialogAction(
+                                      child: Text("Okay"),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      }),
+                                ],
+                              );
+                            });
                       },
                       child: Text(
                         "Submit",
