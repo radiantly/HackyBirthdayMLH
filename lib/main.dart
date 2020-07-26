@@ -40,7 +40,7 @@ class _MyAppState extends State<MyApp> {
             )),
         home: Scaffold(
           appBar: AppBar(
-            title: Text('HackShare'),
+            title: Text('Hack it, Share it!'),
           ),
           body: StreamBuilder(
               stream: Firestore.instance.collection('hacks').snapshots(),
