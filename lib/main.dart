@@ -16,17 +16,9 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   Completer<GoogleMapController> _controller = Completer();
-  static final markerId = MarkerId("test");
-  static const LatLng _center = const LatLng(45.521563, -122.677433);
-  static final aMarker = Marker(
-      markerId: markerId,
-      position: _center,
-      infoWindow: InfoWindow(
-          title: "Imagine winning a hackathon",
-          snippet: 'Using a framework you started learning two days back'));
-  // markers.addAll({markerId: aMarker});
 
-  var markers = <MarkerId, Marker>{markerId: aMarker};
+  static const LatLng _center = const LatLng(45.521563, -122.677433);
+
   void _onMapCreated(GoogleMapController controller) {
     _controller.complete(controller);
   }
@@ -36,14 +28,19 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         theme: ThemeData(
             primaryColor: Colors.lightGreen,
+            primaryIconTheme: IconThemeData(color: Colors.white),
+            primaryTextTheme:
+                TextTheme(headline6: TextStyle(color: Colors.white)),
+            accentColor: Colors.lightGreen,
+            accentIconTheme: IconThemeData(color: Colors.white),
+            iconTheme: IconThemeData(color: Colors.white),
             inputDecorationTheme: const InputDecorationTheme(
-              labelStyle: TextStyle(color: Colors.lightGreen),
+              labelStyle: TextStyle(color: Colors.black54),
               hintStyle: TextStyle(color: Colors.grey),
             )),
         home: Scaffold(
           appBar: AppBar(
             title: Text('HackShare'),
-            backgroundColor: Colors.lightGreen,
           ),
           body: StreamBuilder(
               stream: Firestore.instance.collection('hacks').snapshots(),
@@ -92,7 +89,6 @@ class SharePostButton extends StatelessWidget {
         return Scaffold(
             appBar: AppBar(
               title: Text("Share your hack!"),
-              backgroundColor: Colors.lightGreen,
             ),
             body: Container(child: ShareForm()));
       }));
@@ -101,8 +97,10 @@ class SharePostButton extends StatelessWidget {
     return FloatingActionButton(
       onPressed: _pushSaved,
       tooltip: "Share a hack!",
-      child: Icon(Icons.add),
-      backgroundColor: Colors.lightGreen,
+      child: Icon(
+        Icons.add,
+        color: Colors.white,
+      ),
     );
   }
 }

@@ -75,7 +75,8 @@ class _ShareFormState extends State<ShareForm> {
                                   CupertinoDialogAction(
                                       child: Text("Okay"),
                                       onPressed: () {
-                                        Navigator.of(context).pop();
+                                        Navigator.of(context)
+                                            .popUntil((route) => route.isFirst);
                                       }),
                                 ],
                               );
