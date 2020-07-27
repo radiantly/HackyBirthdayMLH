@@ -1,6 +1,6 @@
 # Hack it, Share it!
 
-Official hack for the Hacky Birthday MLH Hackathon by Team Cheesy!
+Official hack for the Hacky Birthday MLH Hackathon by Team Cheesy! 🧀
 
 ### Inspiration
 
@@ -13,3 +13,5 @@ Hack it, Share it! is a cross-platform app built with flutter that lets you shar
 ### Built by
  - [Jason](https://github.com/Jason13201)
  - [Joshua T.](https://github.com/radiantly)
+
+This project won the prize for the Best use of Google Cloud 🎉
